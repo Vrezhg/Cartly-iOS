@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="tZJ-FQ-m8v">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Carty-->
+        <scene sceneID="o7f-n7-7sx">
+            <objects>
+                <viewController id="Znm-f4-MyT" customClass="ViewController" customModule="Cartly" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="eBn-ba-Qz8"/>
+                        <viewControllerLayoutGuide type="bottom" id="ntO-Ia-p9D"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="92g-Xi-Hu3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3wx-zH-kSk">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="108" id="SQA-OV-J0y"/>
+                                </constraints>
+                            </pickerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="From" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4CO-mS-xKj">
+                                <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ljA-22-fDM">
+                                <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MKd-x0-sNS">
+                                <color key="backgroundColor" red="0.60497553661616155" green="0.60497553661616155" blue="0.60497553661616155" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="NS3-5m-IhT"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                <state key="normal" title="Select on Map">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="show" identifier="goToMap" id="DmY-CI-KSE"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HDW-5G-Ozf">
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="bis-f8-qMB"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
+                                <state key="normal" title="Request">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="csunSeal" translatesAutoresizingMaskIntoConstraints="NO" id="Ll2-ag-J0t">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="1ER-AR-59O"/>
+                                    <constraint firstAttribute="width" constant="153" id="JAV-4B-nMa"/>
+                                </constraints>
+                            </imageView>
+                            <pickerView tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jF0-0o-mNh">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="108" id="T2i-he-bb5"/>
+                                </constraints>
+                            </pickerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ljA-22-fDM" firstAttribute="centerX" secondItem="92g-Xi-Hu3" secondAttribute="centerX" id="60M-wp-MgU"/>
+                            <constraint firstItem="jF0-0o-mNh" firstAttribute="top" secondItem="ljA-22-fDM" secondAttribute="bottom" id="6p9-DA-UoY"/>
+                            <constraint firstAttribute="trailing" secondItem="3wx-zH-kSk" secondAttribute="trailing" constant="50" id="7TH-st-gA5"/>
+                            <constraint firstItem="jF0-0o-mNh" firstAttribute="leading" secondItem="92g-Xi-Hu3" secondAttribute="leading" constant="50" id="8Mm-uF-FSZ"/>
+                            <constraint firstItem="4CO-mS-xKj" firstAttribute="top" secondItem="Ll2-ag-J0t" secondAttribute="bottom" constant="8" id="ADJ-wQ-hZs"/>
+                            <constraint firstItem="4CO-mS-xKj" firstAttribute="centerX" secondItem="92g-Xi-Hu3" secondAttribute="centerX" id="Dnl-HM-bM8"/>
+                            <constraint firstItem="Ll2-ag-J0t" firstAttribute="top" secondItem="eBn-ba-Qz8" secondAttribute="bottom" id="IcV-44-T18"/>
+                            <constraint firstAttribute="trailing" secondItem="jF0-0o-mNh" secondAttribute="trailing" constant="50" id="KjC-8Q-2gR"/>
+                            <constraint firstItem="MKd-x0-sNS" firstAttribute="centerX" secondItem="92g-Xi-Hu3" secondAttribute="centerX" id="NU2-zA-9IS"/>
+                            <constraint firstItem="MKd-x0-sNS" firstAttribute="top" secondItem="jF0-0o-mNh" secondAttribute="bottom" constant="39" id="Qow-7i-C2O"/>
+                            <constraint firstItem="ljA-22-fDM" firstAttribute="top" secondItem="3wx-zH-kSk" secondAttribute="bottom" constant="21" id="TGs-de-6XV"/>
+                            <constraint firstItem="3wx-zH-kSk" firstAttribute="top" secondItem="4CO-mS-xKj" secondAttribute="bottom" constant="-14" id="dNc-zq-huD"/>
+                            <constraint firstItem="HDW-5G-Ozf" firstAttribute="centerX" secondItem="92g-Xi-Hu3" secondAttribute="centerX" id="e69-cS-hFq"/>
+                            <constraint firstItem="3wx-zH-kSk" firstAttribute="leading" secondItem="92g-Xi-Hu3" secondAttribute="leading" constant="50" id="ruI-yE-XOf"/>
+                            <constraint firstItem="ntO-Ia-p9D" firstAttribute="top" secondItem="HDW-5G-Ozf" secondAttribute="bottom" constant="14" id="sao-Br-tda"/>
+                            <constraint firstItem="Ll2-ag-J0t" firstAttribute="centerX" secondItem="92g-Xi-Hu3" secondAttribute="centerX" id="tIf-is-VNG"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Carty" id="dUi-kV-6T1"/>
+                    <connections>
+                        <outlet property="fromPicker" destination="3wx-zH-kSk" id="LI4-vF-GwT"/>
+                        <outlet property="toPicker" destination="jF0-0o-mNh" id="SJE-JO-MAM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="E6l-qr-Zp0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-138.40000000000001" y="31.934032983508249"/>
+        </scene>
+        <!--Map View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="MapViewController" customModule="Cartly" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" zoomEnabled="NO" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KVI-kc-1dx">
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="qqo-F6-ax2" appends="YES" id="w3Z-Mm-j8R"/>
+                                </connections>
+                            </mapView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="43G-L6-vV7">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="UV4-Sj-p4A"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem title="Current Location" id="MhY-pM-Ikg">
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <action selector="zoomToCurrentLocation:" destination="BYZ-38-t0r" id="ESu-HW-y6H"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                                <color key="barTintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </toolbar>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="mp1-6d-7Bx">
+                                <segments>
+                                    <segment title="Standard"/>
+                                    <segment title="Satellite"/>
+                                    <segment title="Hybrid"/>
+                                </segments>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="setMapType:" destination="BYZ-38-t0r" eventType="valueChanged" id="gO4-Fq-A3p"/>
+                                </connections>
+                            </segmentedControl>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YqX-Qk-zsf">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="oSJ-oX-6OC"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                <state key="normal" title="Request"/>
+                                <connections>
+                                    <action selector="requestPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="awi-YU-goF"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="mp1-6d-7Bx" firstAttribute="top" secondItem="YqX-Qk-zsf" secondAttribute="bottom" constant="14" id="42r-Uc-NPo"/>
+                            <constraint firstAttribute="trailing" secondItem="mp1-6d-7Bx" secondAttribute="trailing" constant="16" id="98I-Za-ws1"/>
+                            <constraint firstItem="KVI-kc-1dx" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="DTj-KT-gbU"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="43G-L6-vV7" secondAttribute="bottom" id="JOG-dy-oPy"/>
+                            <constraint firstItem="KVI-kc-1dx" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="LgU-bu-IIO"/>
+                            <constraint firstItem="YqX-Qk-zsf" firstAttribute="centerX" secondItem="KVI-kc-1dx" secondAttribute="centerX" id="NPw-BU-JhK"/>
+                            <constraint firstItem="43G-L6-vV7" firstAttribute="top" secondItem="KVI-kc-1dx" secondAttribute="bottom" id="RB5-ej-f0G"/>
+                            <constraint firstItem="43G-L6-vV7" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="S6J-zQ-UDZ"/>
+                            <constraint firstAttribute="trailing" secondItem="KVI-kc-1dx" secondAttribute="trailing" id="jBn-Xt-nit"/>
+                            <constraint firstItem="43G-L6-vV7" firstAttribute="top" secondItem="mp1-6d-7Bx" secondAttribute="bottom" constant="10" id="lBu-Mf-5Wd"/>
+                            <constraint firstAttribute="trailing" secondItem="43G-L6-vV7" secondAttribute="trailing" id="uPd-Go-npR"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="KVI-kc-1dx" id="hrm-ww-gpo"/>
+                        <outlet property="typeSelector" destination="mp1-6d-7Bx" id="o9V-jX-cmh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="qqo-F6-ax2">
+                    <connections>
+                        <action selector="doubleTap:" destination="BYZ-38-t0r" id="gj0-Vx-N5L"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="616.79999999999995" y="31.934032983508249"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="iQN-8N-7l3">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="tZJ-FQ-m8v" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="yqC-Sh-1QQ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Znm-f4-MyT" kind="relationship" relationship="rootViewController" id="HpA-H4-OSD"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9hH-xw-bUl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1077.5999999999999" y="31.934032983508249"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="csunSeal" width="450" height="450"/>
+    </resources>
+</document>
