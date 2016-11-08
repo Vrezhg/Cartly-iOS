@@ -14,7 +14,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     @IBOutlet weak var fromPicker: UIPickerView!
     @IBOutlet weak var toPicker: UIPickerView!
     
-    let locations = ["Jacaranda Hall", "Oviat Library", "Manzanita Hall", "Book Store", "Parking B5", "Parking B3"]
+    let locations = ["Jacaranda Hall", "Oviat Library", "Manzanita Hall", "Book Store", "Parking B5", "Parking B3", "SRC"]
     
     var fromLocation : String!
     var toLocation : String!
