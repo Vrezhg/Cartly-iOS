@@ -14,12 +14,19 @@ class MapViewController: UIViewController , MKMapViewDelegate , CLLocationManage
 
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var typeSelector: UISegmentedControl!
+    @IBOutlet weak var promptLabel: UILabel!
+    @IBOutlet weak var promptView: UIView!
+    @IBOutlet weak var resetButton: UIButton!
     
     var locationManager: CLLocationManager!
     var start : CLLocationCoordinate2D!
     var end : CLLocationCoordinate2D!
     
+    var annotations : [MKAnnotation] = []
+    var path : MKRoute?
+    
     let pickupLocation = PickupLocations()
+    let promptMessages = ["Select a pickup location..", "Select a dropoff location"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,10 +41,13 @@ class MapViewController: UIViewController , MKMapViewDelegate , CLLocationManage
         
         centerOnUser(location: csunLocation)
         
+        promptLabel.text = promptMessages[0]
+        
         locationManager = CLLocationManager()
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
     }
+   
     @IBAction func doubleTap(_ sender: UITapGestureRecognizer) {
         sender.numberOfTapsRequired = 2
         let touchPoint = sender.location(in: mapView)
@@ -66,22 +76,30 @@ class MapViewController: UIViewController , MKMapViewDelegate , CLLocationManage
         pointAnnotation.coordinate = tapped
         pointAnnotation.title = buildingTitle
         
+        annotations.append(pointAnnotation)
         mapView.addAnnotation(pointAnnotation)
             
             
         if start == nil {
             start = tapped
+            promptLabel.text = promptMessages[1]
         } else {
             end = tapped
+            promptView.isHidden = true
             getDirections(from: start, to: end)
+            resetButton.isHidden = false
         }
             
         }
     }
-
-    @IBAction func requestPressed(_ sender: AnyObject) {
-
-        getDirections(from: start, to: end)
+    
+    @IBAction func resetRoute(_ sender: Any) {
+        mapView.removeAnnotations(annotations)
+        mapView.remove((path?.polyline)!)
+        promptLabel.text = promptMessages[0]
+        promptView.isHidden = false
+        
+        resetButton.isHidden = true
     }
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
@@ -105,9 +123,9 @@ class MapViewController: UIViewController , MKMapViewDelegate , CLLocationManage
             (response, error) in
             
             if let route = response?.routes{
-                let path = route.first
-                print(path)
-                self.mapView.add((path?.polyline)!, level: MKOverlayLevel.aboveRoads)
+                self.path = route.first
+            
+                self.mapView.add((self.path?.polyline)!, level: MKOverlayLevel.aboveRoads)
                 self.mapView.setNeedsDisplay()
                 
                 let alert = UIAlertController(title: "Success", message: "Your Carty will arrive in 3 min.", preferredStyle: UIAlertControllerStyle.alert)
@@ -122,7 +140,9 @@ class MapViewController: UIViewController , MKMapViewDelegate , CLLocationManage
     }
 
     @IBAction func zoomToCurrentLocation(_ sender: UIBarButtonItem) {
-        centerOnUser(location: locationManager.location!)
+        if let location = locationManager.location{
+            centerOnUser(location: location)
+        }
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {

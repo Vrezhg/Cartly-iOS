@@ -18,17 +18,19 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     
     var fromLocation : String!
     var toLocation : String!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         fromPicker.dataSource = self
         toPicker.dataSource = self
         fromPicker.delegate = self
         toPicker.delegate = self
+    
     }
-    
+
+
     // MARK - From and To Picker
-    
+   
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="tZJ-FQ-m8v">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11760" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="tZJ-FQ-m8v">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11755"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -50,7 +50,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="BYZ-38-t0r" kind="show" identifier="goToMap" id="DmY-CI-KSE"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" identifier="gotoMap" id="xz8-Ol-5lV"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HDW-5G-Ozf">
@@ -139,51 +139,76 @@
                                             <action selector="zoomToCurrentLocation:" destination="BYZ-38-t0r" id="ESu-HW-y6H"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem style="plain" id="lYc-bB-eoY">
+                                        <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="mp1-6d-7Bx">
+                                            <rect key="frame" x="154" y="8" width="212" height="29"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <segments>
+                                                <segment title="Standard"/>
+                                                <segment title="Satellite"/>
+                                                <segment title="Hybrid"/>
+                                            </segments>
+                                            <color key="tintColor" red="0.97154007741319293" green="1" blue="0.9608891045166611" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <connections>
+                                                <action selector="setMapType:" destination="BYZ-38-t0r" eventType="valueChanged" id="gO4-Fq-A3p"/>
+                                            </connections>
+                                        </segmentedControl>
+                                    </barButtonItem>
                                 </items>
                                 <color key="barTintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </toolbar>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="mp1-6d-7Bx">
-                                <rect key="frame" x="147" y="585" width="212" height="29"/>
-                                <segments>
-                                    <segment title="Standard"/>
-                                    <segment title="Satellite"/>
-                                    <segment title="Hybrid"/>
-                                </segments>
-                                <color key="tintColor" red="0.1779528671874393" green="0.33142725081522528" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <connections>
-                                    <action selector="setMapType:" destination="BYZ-38-t0r" eventType="valueChanged" id="gO4-Fq-A3p"/>
-                                </connections>
-                            </segmentedControl>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mZs-83-nzd" userLabel="Prompt View">
+                                <rect key="frame" x="0.0" y="64" width="375" height="55"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dXP-fe-8ej">
+                                        <rect key="frame" x="41" y="17" width="285" height="21"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.19291923415492956" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="dXP-fe-8ej" firstAttribute="leading" secondItem="mZs-83-nzd" secondAttribute="leading" constant="41" id="6bF-JI-Ojy"/>
+                                    <constraint firstItem="dXP-fe-8ej" firstAttribute="centerY" secondItem="mZs-83-nzd" secondAttribute="centerY" id="LwY-RR-hba"/>
+                                    <constraint firstAttribute="height" constant="55" id="fT5-5W-slD"/>
+                                    <constraint firstAttribute="trailing" secondItem="dXP-fe-8ej" secondAttribute="trailing" constant="49" id="rR9-qW-rcc"/>
+                                </constraints>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YqX-Qk-zsf">
-                                <rect key="frame" x="147.5" y="539" width="80" height="32"/>
+                                <rect key="frame" x="279" y="581" width="80" height="32"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="80" id="oSJ-oX-6OC"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                <state key="normal" title="Request"/>
+                                <state key="normal" title="Reset"/>
                                 <connections>
-                                    <action selector="requestPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="awi-YU-goF"/>
+                                    <action selector="resetRoute:" destination="BYZ-38-t0r" eventType="touchUpInside" id="e2J-Vr-9BP"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="mp1-6d-7Bx" firstAttribute="top" secondItem="YqX-Qk-zsf" secondAttribute="bottom" constant="14" id="42r-Uc-NPo"/>
-                            <constraint firstAttribute="trailing" secondItem="mp1-6d-7Bx" secondAttribute="trailing" constant="16" id="98I-Za-ws1"/>
+                            <constraint firstItem="mZs-83-nzd" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="CPm-Ju-97o"/>
                             <constraint firstItem="KVI-kc-1dx" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="DTj-KT-gbU"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="43G-L6-vV7" secondAttribute="bottom" id="JOG-dy-oPy"/>
                             <constraint firstItem="KVI-kc-1dx" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="LgU-bu-IIO"/>
-                            <constraint firstItem="YqX-Qk-zsf" firstAttribute="centerX" secondItem="KVI-kc-1dx" secondAttribute="centerX" id="NPw-BU-JhK"/>
+                            <constraint firstItem="YqX-Qk-zsf" firstAttribute="leading" secondItem="KVI-kc-1dx" secondAttribute="trailing" constant="-96" id="P6x-Tk-h2G"/>
                             <constraint firstItem="43G-L6-vV7" firstAttribute="top" secondItem="KVI-kc-1dx" secondAttribute="bottom" id="RB5-ej-f0G"/>
+                            <constraint firstItem="YqX-Qk-zsf" firstAttribute="top" secondItem="KVI-kc-1dx" secondAttribute="bottom" constant="-42" id="S3a-5s-ztr"/>
                             <constraint firstItem="43G-L6-vV7" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="S6J-zQ-UDZ"/>
+                            <constraint firstAttribute="trailing" secondItem="mZs-83-nzd" secondAttribute="trailing" id="h8f-TV-DPS"/>
                             <constraint firstAttribute="trailing" secondItem="KVI-kc-1dx" secondAttribute="trailing" id="jBn-Xt-nit"/>
-                            <constraint firstItem="43G-L6-vV7" firstAttribute="top" secondItem="mp1-6d-7Bx" secondAttribute="bottom" constant="10" id="lBu-Mf-5Wd"/>
                             <constraint firstAttribute="trailing" secondItem="43G-L6-vV7" secondAttribute="trailing" id="uPd-Go-npR"/>
+                            <constraint firstItem="mZs-83-nzd" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="wPX-HH-Tcw"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="mapView" destination="KVI-kc-1dx" id="hrm-ww-gpo"/>
+                        <outlet property="promptLabel" destination="dXP-fe-8ej" id="kJ4-wn-7op"/>
+                        <outlet property="promptView" destination="mZs-83-nzd" id="Teb-pm-MLp"/>
+                        <outlet property="resetButton" destination="YqX-Qk-zsf" id="i89-3n-S3C"/>
                         <outlet property="typeSelector" destination="mp1-6d-7Bx" id="o9V-jX-cmh"/>
                     </connections>
                 </viewController>
