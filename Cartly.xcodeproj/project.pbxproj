@@ -15,6 +15,7 @@
 		DB310BBA1DAC9F6000A97BC5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB310BB81DAC9F6000A97BC5 /* LaunchScreen.storyboard */; };
 		DB310BC31DACB35E00A97BC5 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB310BC21DACB35D00A97BC5 /* MapKit.framework */; };
 		DB310BC51DACD23C00A97BC5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB310BC41DACD23C00A97BC5 /* ViewController.swift */; };
+		DBC84B8D1DD156FA0099492B /* PickupLocations.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC84B8C1DD156FA0099492B /* PickupLocations.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		DB310BBB1DAC9F6000A97BC5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DB310BC21DACB35D00A97BC5 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		DB310BC41DACD23C00A97BC5 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		DBC84B8C1DD156FA0099492B /* PickupLocations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickupLocations.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +47,7 @@
 		DB1A4C301DB2D85200BE71E3 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				DBC84B8C1DD156FA0099492B /* PickupLocations.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -52,6 +55,8 @@
 		DB1A4C311DB2D86000BE71E3 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				DB310BC41DACD23C00A97BC5 /* ViewController.swift */,
+				DB310BAE1DAC9F6000A97BC5 /* MapViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -78,8 +83,6 @@
 			children = (
 				DB1A4C311DB2D86000BE71E3 /* Controllers */,
 				DB1A4C301DB2D85200BE71E3 /* Models */,
-				DB310BC41DACD23C00A97BC5 /* ViewController.swift */,
-				DB310BAE1DAC9F6000A97BC5 /* MapViewController.swift */,
 				DB310BB01DAC9F6000A97BC5 /* Main.storyboard */,
 				DB310BB61DAC9F6000A97BC5 /* Assets.xcassets */,
 				DB310BB81DAC9F6000A97BC5 /* LaunchScreen.storyboard */,
@@ -171,6 +174,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DBC84B8D1DD156FA0099492B /* PickupLocations.swift in Sources */,
 				DB310BAF1DAC9F6000A97BC5 /* MapViewController.swift in Sources */,
 				DB310BAD1DAC9F6000A97BC5 /* AppDelegate.swift in Sources */,
 				DB310BC51DACD23C00A97BC5 /* ViewController.swift in Sources */,

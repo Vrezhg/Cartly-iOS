@@ -13,12 +13,13 @@ import CoreLocation
 class MapViewController: UIViewController , MKMapViewDelegate , CLLocationManagerDelegate{
 
     @IBOutlet weak var mapView: MKMapView!
-    var locationManager: CLLocationManager!
-    
     @IBOutlet weak var typeSelector: UISegmentedControl!
-
+    
+    var locationManager: CLLocationManager!
     var start : CLLocationCoordinate2D!
     var end : CLLocationCoordinate2D!
+    
+    let pickupLocation = PickupLocations()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +29,7 @@ class MapViewController: UIViewController , MKMapViewDelegate , CLLocationManage
         let csunLocation = CLLocation(latitude: 34.238476, longitude: -118.529330)
         
         mapView.mapType = MKMapType.satellite
+        mapView.isZoomEnabled = false
         typeSelector.selectedSegmentIndex = 1
         
         centerOnUser(location: csunLocation)
@@ -39,23 +41,42 @@ class MapViewController: UIViewController , MKMapViewDelegate , CLLocationManage
     @IBAction func doubleTap(_ sender: UITapGestureRecognizer) {
         sender.numberOfTapsRequired = 2
         let touchPoint = sender.location(in: mapView)
-        print(touchPoint)
         let touchMapCoordinate = mapView.convert(touchPoint, toCoordinateFrom: mapView)
-        print(touchMapCoordinate)
+        checkWhereTapped(tapped: touchMapCoordinate)
 
-        let pointAnnotation = MKPointAnnotation()
-        pointAnnotation.coordinate = touchMapCoordinate
-
-        if start == nil {
-            start = touchMapCoordinate
-            pointAnnotation.title = "Oviatt Library"
-        } else {
-            end = touchMapCoordinate
-            pointAnnotation.title = "VPAC"
+    }
+    
+    func checkWhereTapped(tapped: CLLocationCoordinate2D) {
+        
+        var buildingTitle = ""
+        
+        //iterates through building coordinates and checks whether its within bounds
+        for (key, value) in  pickupLocation.locations {
+            if let topLeft = value["topLeft"] , let topRight = value["topRight"], let bottomRight = value["bottomRight"], let bottomLeft = value["bottomLeft"] {
+                if (tapped.latitude <= topLeft.latitude && tapped.latitude >= bottomRight.latitude && tapped.longitude <= topRight.longitude && tapped.longitude >= bottomLeft.longitude) {
+                    
+                    buildingTitle = key
+                    break
+                }
+            }
         }
         
+        if buildingTitle != "" {
+        let pointAnnotation = MKPointAnnotation()
+        pointAnnotation.coordinate = tapped
+        pointAnnotation.title = buildingTitle
+        
         mapView.addAnnotation(pointAnnotation)
-
+            
+            
+        if start == nil {
+            start = tapped
+        } else {
+            end = tapped
+            getDirections(from: start, to: end)
+        }
+            
+        }
     }
 
     @IBAction func requestPressed(_ sender: AnyObject) {
@@ -100,7 +121,6 @@ class MapViewController: UIViewController , MKMapViewDelegate , CLLocationManage
         })
     }
 
-    
     @IBAction func zoomToCurrentLocation(_ sender: UIBarButtonItem) {
         centerOnUser(location: locationManager.location!)
     }
@@ -113,8 +133,8 @@ class MapViewController: UIViewController , MKMapViewDelegate , CLLocationManage
     
     func centerOnUser (location : CLLocation){
         
-        let spanX = 0.01
-        let spanY = 0.01
+        let spanX = 0.005
+        let spanY = 0.005
         var region : MKCoordinateRegion = MKCoordinateRegion()
         region.center.latitude = location.coordinate.latitude
         region.center.longitude = location.coordinate.longitude
@@ -140,12 +160,6 @@ class MapViewController: UIViewController , MKMapViewDelegate , CLLocationManage
             break
         }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
 
 }
 
