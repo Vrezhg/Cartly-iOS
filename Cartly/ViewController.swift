@@ -14,7 +14,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     @IBOutlet weak var fromPicker: UIPickerView!
     @IBOutlet weak var toPicker: UIPickerView!
     
-    let locations = ["Jacaranda Hall", "Oviat Library", "Manzanita Hall", "Book Store", "Parking B5", "Parking B3", "SRC"]
+    let locations = ["Bayramian Hall", "Chaparral Hall", "Citrus Hall", "Cyrpus Hall", "Eucalyptus Hall", "Jacaranda Hall", "Jerome Richfield Hall", "Juniper Hall", "Live Oak Hall", "Manzanita Hall", "Matador Book Store", "Oviatt Library", "B3 Parking Structure", "B5 Parking Structure", "G3 Parking Structure", "Redwood Hall/Matadome", "Sequoia Hall", "Sierra Hall", "SRC", "University Hall", "USU", "VPAC"]
     
     var fromLocation : String!
     var toLocation : String!
@@ -25,7 +25,8 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         toPicker.dataSource = self
         fromPicker.delegate = self
         toPicker.delegate = self
-    
+        self.view.isOpaque = false
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "csunBackground.jpg")!)
     }
 
 

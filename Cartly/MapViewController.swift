@@ -49,7 +49,7 @@ class MapViewController: UIViewController , MKMapViewDelegate , CLLocationManage
     }
    
     @IBAction func doubleTap(_ sender: UITapGestureRecognizer) {
-        sender.numberOfTapsRequired = 2
+        sender.numberOfTapsRequired = 1
         let touchPoint = sender.location(in: mapView)
         let touchMapCoordinate = mapView.convert(touchPoint, toCoordinateFrom: mapView)
         checkWhereTapped(tapped: touchMapCoordinate)
