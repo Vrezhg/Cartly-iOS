@@ -6,6 +6,15 @@
 //  Copyright © 2016 Revenge Apps Inc. All rights reserved.
 //
 
+/*
+ let addieKlotzStudentHealthCenter : [String : CLLocationCoordinate2D] = [
+ "topLeft" :
+ "topRight" :
+ "bottomRight" :
+ "bottomLeft" :
+ ]
+ */
+
 import UIKit
 import CoreLocation
 
@@ -13,7 +22,31 @@ class PickupLocations {
     
     var locations : [String : [String: CLLocationCoordinate2D]] = [:]
     
-    let bayrahmianHall : [String : CLLocationCoordinate2D] = [
+    
+    let artAndDesignCenter : [String : CLLocationCoordinate2D] = [
+        "topLeft" : CLLocationCoordinate2DMake(34.243924, -118.530353),
+        "topRight" : CLLocationCoordinate2DMake(34.243927, -118.529596),
+        "bottomRight" : CLLocationCoordinate2DMake(34.243135, -118.529734),
+        "bottomLeft" : CLLocationCoordinate2DMake(34.243130, -118.529987)
+    ]
+    
+    //may have to fix coordinates for Arbor Court to not conflict with arbor grill & freudian sip
+    let arborCourt : [String : CLLocationCoordinate2D] = [
+        "topLeft" : CLLocationCoordinate2DMake(34.241412, -118.530079),
+        "topRight" : CLLocationCoordinate2DMake(34.241408, -118.529551),
+        "bottomRight" : CLLocationCoordinate2DMake(34.240948, -118.529560),
+        "bottomLeft" : CLLocationCoordinate2DMake(34.240955, -118.530059)
+    ]
+    
+    let athleticsOfficeBuilding : [String : CLLocationCoordinate2D] = [
+        "topLeft" : CLLocationCoordinate2DMake(34.241735, -118.525563),
+        "topRight" : CLLocationCoordinate2DMake(34.241728, -118.525345),
+        "bottomRight" : CLLocationCoordinate2DMake(34.241521, -118.525347),
+        "bottomLeft" : CLLocationCoordinate2DMake(34.241514, -118.525491)
+    ]
+    
+    
+    let bayramianHall : [String : CLLocationCoordinate2D] = [
         "topLeft" : CLLocationCoordinate2DMake(34.240684162311304, -118.53145122528076),
         "topRight" : CLLocationCoordinate2DMake(34.240684162311304, -118.53015303611755),
         "bottomRight" : CLLocationCoordinate2DMake(34.239912527277056, -118.53015303611755),
@@ -34,7 +67,7 @@ class PickupLocations {
         "bottomLeft" : CLLocationCoordinate2DMake(34.238890, -118.528600)
     ]
     
-    let cyprusHall : [String : CLLocationCoordinate2D] = [
+    let cypressHall : [String : CLLocationCoordinate2D] = [
         "topLeft" : CLLocationCoordinate2DMake(34.236700, -118.530094),
         "topRight" : CLLocationCoordinate2DMake(34.236695, -118.529259),
         "bottomRight" : CLLocationCoordinate2DMake(34.236020, -118.529262),
@@ -68,6 +101,13 @@ class PickupLocations {
         "topRight" : CLLocationCoordinate2DMake(34.241701, -118.530017),
         "bottomRight" : CLLocationCoordinate2DMake(34.241425, -118.530243),
         "bottomLeft" : CLLocationCoordinate2DMake(34.242115, -118.531083)
+    ]
+    
+    let klotzStudentHealthCenter : [String : CLLocationCoordinate2D] = [
+        "topLeft" : CLLocationCoordinate2DMake(34.238274, -118.526643),
+        "topRight" : CLLocationCoordinate2DMake(34.238316, -118.526002),
+        "bottomRight" : CLLocationCoordinate2DMake(34.238108, -118.526003),
+        "bottomLeft" : CLLocationCoordinate2DMake(34.238125, -118.526620)
     ]
     
     let b5parkingStructure : [String : CLLocationCoordinate2D] = [
@@ -169,17 +209,21 @@ class PickupLocations {
     ]
 
     init() {
-        locations["Bayrahmian Hall"] = bayrahmianHall
+        locations["Art and Design Center"] = artAndDesignCenter
+        locations["Arbor Court"] = arborCourt
+        locations["Athletics Office Building"] = athleticsOfficeBuilding
+        locations["Bayramian Hall"] = bayramianHall
         locations["B3 Parking Structure"] = b3parkingStructure
         locations["B5 Parking Structure"] = b5parkingStructure
         locations["Chaparral Hall"] = chaparralHall
         locations["Citrus Hall"] = citrusHall
-        locations["Cyprus Hall"] = cyprusHall
+        locations["Cypress Hall"] = cypressHall
         locations["Eucalyptus Hall"] = eucalyptusHall
         locations["G3 Parking Structure"] = g3parkingStructure
         locations["Jacaranda Hall"] = jacarandaHall
         locations["Jerome Richfield Hall"] = jeromerichfieldHall
         locations["Juniper Hall"] = juniperHall
+        locations["Klotz Student Health Center"] = klotzStudentHealthCenter
         locations["Live Oak Hall"] = liveoakHall
         locations["Matador Book Store"] = bookStore
         locations["Manzanita Hall"] = manzanitaHall
