@@ -45,7 +45,6 @@ class PickupLocations {
         "bottomLeft" : CLLocationCoordinate2DMake(34.241514, -118.525491)
     ]
     
-    
     let bayramianHall : [String : CLLocationCoordinate2D] = [
         "topLeft" : CLLocationCoordinate2DMake(34.240684162311304, -118.53145122528076),
         "topRight" : CLLocationCoordinate2DMake(34.240684162311304, -118.53015303611755),
@@ -53,11 +52,39 @@ class PickupLocations {
         "bottomLeft" : CLLocationCoordinate2DMake(34.239912527277056, -118.53145122528076)
     ]
     
+    let brownCenter : [String : CLLocationCoordinate2D] = [
+        "topLeft" : CLLocationCoordinate2DMake(34.242636, -118.527031),
+        "topRight" : CLLocationCoordinate2DMake(34.242561, -118.526196),
+        "bottomRight" : CLLocationCoordinate2DMake(34.242372, -118.526200),
+        "bottomLeft" : CLLocationCoordinate2DMake(34.242313, -118.526961)
+    ]
+    
+    let centralPlant : [String : CLLocationCoordinate2D] = [
+        "topLeft" : CLLocationCoordinate2DMake(34.243354, -118.530809),
+        "topRight" : CLLocationCoordinate2DMake(34.243348, -118.530362),
+        "bottomRight" : CLLocationCoordinate2DMake(34.242918, -118.530366),
+        "bottomLeft" : CLLocationCoordinate2DMake(34.242912, -118.530809)
+    ]
+    
     let chaparralHall : [String : CLLocationCoordinate2D] = [
         "topLeft" : CLLocationCoordinate2DMake(34.238559, -118.527257),
         "topRight" : CLLocationCoordinate2DMake(34.238581, -118.526724),
         "bottomRight" : CLLocationCoordinate2DMake(34.237899, -118.526712),
         "bottomLeft" : CLLocationCoordinate2DMake(34.237899, -118.527242)
+    ]
+    
+    let chicanoHouse : [String : CLLocationCoordinate2D] = [
+        "topLeft" : CLLocationCoordinate2DMake(34.242545, -118.530045),
+        "topRight" : CLLocationCoordinate2DMake(34.242540, -118.529869),
+        "bottomRight" : CLLocationCoordinate2DMake(34.242300, -118.529903),
+        "bottomLeft" : CLLocationCoordinate2DMake(34.242295, -118.530027)
+    ]
+    
+    let childrensCenter : [String : CLLocationCoordinate2D] = [
+        "topLeft" : CLLocationCoordinate2DMake(34.243508, -118.533530),
+        "topRight" : CLLocationCoordinate2DMake(34.243501, -118.533183),
+        "bottomRight" : CLLocationCoordinate2DMake(34.242945, -118.533147),
+        "bottomLeft" : CLLocationCoordinate2DMake(34.242955, -118.533558)
     ]
     
     let citrusHall : [String : CLLocationCoordinate2D] = [
@@ -73,6 +100,21 @@ class PickupLocations {
         "bottomRight" : CLLocationCoordinate2DMake(34.236020, -118.529262),
         "bottomLeft" : CLLocationCoordinate2DMake(34.236017, -118.530098)
     ]
+    
+    let donaldBianchiPlanetarium : [String : CLLocationCoordinate2D] = [
+        "topLeft" : CLLocationCoordinate2DMake(34.239119, -118.528557),
+        "topRight" : CLLocationCoordinate2DMake(34.239120, -118.528375),
+        "bottomRight" : CLLocationCoordinate2DMake(34.238981, -118.528373),
+        "bottomLeft" : CLLocationCoordinate2DMake(34.238981, -118.528555)
+    ]
+    
+    let duckPond : [String : CLLocationCoordinate2D] = [
+        "topLeft" : CLLocationCoordinate2DMake(34.236728, -118.526253),
+        "topRight" : CLLocationCoordinate2DMake(34.236722, -118.525864),
+        "bottomRight" : CLLocationCoordinate2DMake(34.236493, -118.525869),
+        "bottomLeft" : CLLocationCoordinate2DMake(34.236499, -118.526249)
+    ]
+    
     
     let eucalyptusHall : [String : CLLocationCoordinate2D] = [
         "topLeft" : CLLocationCoordinate2DMake(34.238735, -118.528810),
@@ -213,10 +255,16 @@ class PickupLocations {
         locations["Arbor Court"] = arborCourt
         locations["Athletics Office Building"] = athleticsOfficeBuilding
         locations["Bayramian Hall"] = bayramianHall
+        locations["Brown Center"] = brownCenter
         locations["B3 Parking Structure"] = b3parkingStructure
         locations["B5 Parking Structure"] = b5parkingStructure
+        locations["Central Plant"] = centralPlant
         locations["Chaparral Hall"] = chaparralHall
+        locations["Chicano House"] = chicanoHouse
+        locations["Childrens Center"] = childrensCenter
         locations["Citrus Hall"] = citrusHall
+        locations["Donald Bianchi Planetarium"] = donaldBianchiPlanetarium
+        locations["Duck Pond"] = duckPond
         locations["Cypress Hall"] = cypressHall
         locations["Eucalyptus Hall"] = eucalyptusHall
         locations["G3 Parking Structure"] = g3parkingStructure
