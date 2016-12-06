@@ -285,4 +285,7 @@ class PickupLocations {
         locations["VPAC"] = valleyPerformingArtsCenter
     }
     
+    func findCenterPoint(locationDictionary : [String : [String: CLLocationCoordinate2D]]){
+    }
+    
 }

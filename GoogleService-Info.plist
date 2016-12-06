@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>338486626128-eleept7nunjde4f1u8tmmodi69bi8ndf.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.338486626128-eleept7nunjde4f1u8tmmodi69bi8ndf</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCqe_hXXfSVgfMO5QHK_kDCSON-P69y1Cw</string>
+	<key>GCM_SENDER_ID</key>
+	<string>338486626128</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>Revenge-Apps-Inc.Cartly</string>
+	<key>PROJECT_ID</key>
+	<string>cartly-be9e0</string>
+	<key>STORAGE_BUCKET</key>
+	<string>cartly-be9e0.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:338486626128:ios:d045f881dbefefe9</string>
+	<key>DATABASE_URL</key>
+	<string>https://cartly-be9e0.firebaseio.com</string>
+</dict>
+</plist>

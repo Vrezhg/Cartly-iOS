@@ -1,0 +1,6 @@
+framework module Pods_Cartly {
+  umbrella header "Pods-Cartly-umbrella.h"
+
+  export *
+  module * { export * }
+}

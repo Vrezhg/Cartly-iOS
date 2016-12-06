@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		598B74B1A93C2AC8C9BA48EF /* Pods_Cartly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 334DA6E9180F75D217550972 /* Pods_Cartly.framework */; };
 		DB310BAD1DAC9F6000A97BC5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB310BAC1DAC9F6000A97BC5 /* AppDelegate.swift */; };
 		DB310BAF1DAC9F6000A97BC5 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB310BAE1DAC9F6000A97BC5 /* MapViewController.swift */; };
 		DB310BB21DAC9F6000A97BC5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB310BB01DAC9F6000A97BC5 /* Main.storyboard */; };
@@ -16,9 +17,14 @@
 		DB310BC31DACB35E00A97BC5 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB310BC21DACB35D00A97BC5 /* MapKit.framework */; };
 		DB310BC51DACD23C00A97BC5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB310BC41DACD23C00A97BC5 /* ViewController.swift */; };
 		DBC84B8D1DD156FA0099492B /* PickupLocations.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC84B8C1DD156FA0099492B /* PickupLocations.swift */; };
+		DBEE9F191DF3ECCE004248D9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBEE9F181DF3ECCE004248D9 /* LoginViewController.swift */; };
+		DBEE9F1D1DF3FA42004248D9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DBEE9F1C1DF3FA42004248D9 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		334DA6E9180F75D217550972 /* Pods_Cartly.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cartly.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4457695484B78CDDBF96B611 /* Pods-Cartly.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cartly.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Cartly/Pods-Cartly.debug.xcconfig"; sourceTree = "<group>"; };
+		A84CC49BC56564372AB37F24 /* Pods-Cartly.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cartly.release.xcconfig"; path = "Pods/Target Support Files/Pods-Cartly/Pods-Cartly.release.xcconfig"; sourceTree = "<group>"; };
 		DB310BA91DAC9F6000A97BC5 /* Cartly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cartly.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB310BAC1DAC9F6000A97BC5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DB310BAE1DAC9F6000A97BC5 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -30,6 +36,8 @@
 		DB310BC21DACB35D00A97BC5 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		DB310BC41DACD23C00A97BC5 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		DBC84B8C1DD156FA0099492B /* PickupLocations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickupLocations.swift; sourceTree = "<group>"; };
+		DBEE9F181DF3ECCE004248D9 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		DBEE9F1C1DF3FA42004248D9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,12 +46,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB310BC31DACB35E00A97BC5 /* MapKit.framework in Frameworks */,
+				598B74B1A93C2AC8C9BA48EF /* Pods_Cartly.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6F15FC1747C5BA020091FCCE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4457695484B78CDDBF96B611 /* Pods-Cartly.debug.xcconfig */,
+				A84CC49BC56564372AB37F24 /* Pods-Cartly.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		DB1A4C301DB2D85200BE71E3 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -57,6 +75,7 @@
 			children = (
 				DB310BC41DACD23C00A97BC5 /* ViewController.swift */,
 				DB310BAE1DAC9F6000A97BC5 /* MapViewController.swift */,
+				DBEE9F181DF3ECCE004248D9 /* LoginViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -64,9 +83,11 @@
 		DB310BA01DAC9F6000A97BC5 = {
 			isa = PBXGroup;
 			children = (
+				DBEE9F1C1DF3FA42004248D9 /* GoogleService-Info.plist */,
 				DB310BAB1DAC9F6000A97BC5 /* Cartly */,
 				DB310BAA1DAC9F6000A97BC5 /* Products */,
 				DB310BC11DACB35D00A97BC5 /* Frameworks */,
+				6F15FC1747C5BA020091FCCE /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -97,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				DB310BC21DACB35D00A97BC5 /* MapKit.framework */,
+				334DA6E9180F75D217550972 /* Pods_Cartly.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -108,9 +130,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DB310BBE1DAC9F6000A97BC5 /* Build configuration list for PBXNativeTarget "Cartly" */;
 			buildPhases = (
+				063339942941320238EE6AD3 /* [CP] Check Pods Manifest.lock */,
 				DB310BA51DAC9F6000A97BC5 /* Sources */,
 				DB310BA61DAC9F6000A97BC5 /* Frameworks */,
 				DB310BA71DAC9F6000A97BC5 /* Resources */,
+				133E5EC5E7AB00D109CCFD4F /* [CP] Embed Pods Frameworks */,
+				18D7FD76BA64C787013AD36A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -162,6 +187,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB310BBA1DAC9F6000A97BC5 /* LaunchScreen.storyboard in Resources */,
+				DBEE9F1D1DF3FA42004248D9 /* GoogleService-Info.plist in Resources */,
 				DB310BB71DAC9F6000A97BC5 /* Assets.xcassets in Resources */,
 				DB310BB21DAC9F6000A97BC5 /* Main.storyboard in Resources */,
 			);
@@ -169,11 +195,60 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		063339942941320238EE6AD3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		133E5EC5E7AB00D109CCFD4F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Cartly/Pods-Cartly-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		18D7FD76BA64C787013AD36A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Cartly/Pods-Cartly-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		DB310BA51DAC9F6000A97BC5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DBEE9F191DF3ECCE004248D9 /* LoginViewController.swift in Sources */,
 				DBC84B8D1DD156FA0099492B /* PickupLocations.swift in Sources */,
 				DB310BAF1DAC9F6000A97BC5 /* MapViewController.swift in Sources */,
 				DB310BAD1DAC9F6000A97BC5 /* AppDelegate.swift in Sources */,
@@ -297,6 +372,7 @@
 		};
 		DB310BBF1DAC9F6000A97BC5 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4457695484B78CDDBF96B611 /* Pods-Cartly.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = YZS2NL8HM4;
@@ -310,6 +386,7 @@
 		};
 		DB310BC01DAC9F6000A97BC5 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A84CC49BC56564372AB37F24 /* Pods-Cartly.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = YZS2NL8HM4;
