@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="Stop" customModule="Cartly" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="150" height="200"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jacaranda Hall" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="niz-mI-PXr">
+                    <rect key="frame" x="14.5" y="38" width="121.5" height="20"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eOn-oG-NE8">
+                    <rect key="frame" x="10" y="161" width="130" height="29"/>
+                    <color key="backgroundColor" red="0.0060546875000000444" green="0.0040017575650291249" blue="0.0056003827753779165" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                    <state key="normal" title="Add to Queue">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Riders waiting:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="FpN-A7-mUm">
+                    <rect key="frame" x="32" y="66" width="86" height="16"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DCS-uj-MYK">
+                    <rect key="frame" x="66" y="90" width="19" height="21"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                    <color key="textColor" red="0.078799543959999996" green="0.99810546870000005" blue="0.288559919" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clockwise" translatesAutoresizingMaskIntoConstraints="NO" id="20F-I9-8Ag">
+                    <rect key="frame" x="62" y="119" width="27" height="27"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="27" id="3mK-1i-TCO"/>
+                        <constraint firstAttribute="width" constant="27" id="vxE-zg-47z"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" red="0.95623046869999995" green="0.95623046869999995" blue="0.95623046869999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="FpN-A7-mUm" firstAttribute="top" secondItem="niz-mI-PXr" secondAttribute="bottom" constant="8" id="1EH-gS-XxU"/>
+                <constraint firstItem="20F-I9-8Ag" firstAttribute="centerX" secondItem="DCS-uj-MYK" secondAttribute="centerX" id="7Km-fx-UYD"/>
+                <constraint firstItem="FpN-A7-mUm" firstAttribute="centerX" secondItem="niz-mI-PXr" secondAttribute="centerX" id="CN5-2k-ATE"/>
+                <constraint firstItem="eOn-oG-NE8" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="DGA-DA-PjC"/>
+                <constraint firstItem="20F-I9-8Ag" firstAttribute="top" secondItem="DCS-uj-MYK" secondAttribute="bottom" constant="8" id="N91-Fm-9DR"/>
+                <constraint firstAttribute="trailing" secondItem="eOn-oG-NE8" secondAttribute="trailing" constant="10" id="Nug-Lz-r3w"/>
+                <constraint firstItem="DCS-uj-MYK" firstAttribute="centerX" secondItem="FpN-A7-mUm" secondAttribute="centerX" id="Vvd-XI-59a"/>
+                <constraint firstItem="niz-mI-PXr" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="38" id="bpw-GV-pqC"/>
+                <constraint firstItem="DCS-uj-MYK" firstAttribute="top" secondItem="FpN-A7-mUm" secondAttribute="bottom" constant="8" id="c6b-Pe-Gf7"/>
+                <constraint firstAttribute="bottom" secondItem="eOn-oG-NE8" secondAttribute="bottom" constant="10" id="kyN-y8-N0s"/>
+                <constraint firstItem="niz-mI-PXr" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="s3A-Ui-VQH"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="direction" destination="20F-I9-8Ag" id="fbF-iq-DPA"/>
+                <outlet property="ridersWaiting" destination="DCS-uj-MYK" id="XKd-Wg-fuv"/>
+                <outlet property="stopName" destination="niz-mI-PXr" id="tpY-UF-Y3N"/>
+            </connections>
+        </view>
+    </objects>
+    <resources>
+        <image name="clockwise" width="50" height="50"/>
+    </resources>
+</document>

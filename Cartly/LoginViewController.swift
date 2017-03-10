@@ -71,8 +71,8 @@ class LoginViewController : UIViewController {
                 })
             }
         }
-
     }
+    
     @IBAction func loginPressed(_ sender: UIButton) {
         if let email = emailTextField.text, let password = passwordTextField.text {
             if (email == "" ||  password == "") {

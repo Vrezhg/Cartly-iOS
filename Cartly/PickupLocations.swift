@@ -21,7 +21,10 @@ import CoreLocation
 class PickupLocations {
     
     var locations : [String : [String: CLLocationCoordinate2D]] = [:]
-    
+    var clockwise : [String : CLLocationCoordinate2D] = [:]
+    var counterClockwise : [String : CLLocationCoordinate2D] = [:]
+    var parking : [String : CLLocationCoordinate2D] = [:]
+
     
     let artAndDesignCenter : [String : CLLocationCoordinate2D] = [
         "topLeft" : CLLocationCoordinate2DMake(34.243924, -118.530353),
@@ -250,42 +253,61 @@ class PickupLocations {
         "bottomLeft" : CLLocationCoordinate2DMake(34.235764, -118.528778)
     ]
 
-    init() {
-        locations["Art and Design Center"] = artAndDesignCenter
-        locations["Arbor Court"] = arborCourt
-        locations["Athletics Office Building"] = athleticsOfficeBuilding
-        locations["Bayramian Hall"] = bayramianHall
-        locations["Brown Center"] = brownCenter
-        locations["B3 Parking Structure"] = b3parkingStructure
-        locations["B5 Parking Structure"] = b5parkingStructure
-        locations["Central Plant"] = centralPlant
-        locations["Chaparral Hall"] = chaparralHall
-        locations["Chicano House"] = chicanoHouse
-        locations["Childrens Center"] = childrensCenter
-        locations["Citrus Hall"] = citrusHall
-        locations["Donald Bianchi Planetarium"] = donaldBianchiPlanetarium
-        locations["Duck Pond"] = duckPond
-        locations["Cypress Hall"] = cypressHall
-        locations["Eucalyptus Hall"] = eucalyptusHall
-        locations["G3 Parking Structure"] = g3parkingStructure
-        locations["Jacaranda Hall"] = jacarandaHall
-        locations["Jerome Richfield Hall"] = jeromerichfieldHall
-        locations["Juniper Hall"] = juniperHall
-        locations["Klotz Student Health Center"] = klotzStudentHealthCenter
-        locations["Live Oak Hall"] = liveoakHall
-        locations["Matador Book Store"] = bookStore
-        locations["Manzanita Hall"] = manzanitaHall
-        locations["Oviatt Library"] = oviattLibrary
-        locations["Redwood Hall/Matadome"] = redwoodHall
-        locations["Sequoia Hall"] = sequoiaHall
-        locations["Sierra Hall"] = sierraHall
-        locations["Student Rec Center"] = studentRecCenter
-        locations["University Hall"] = universityHall
-        locations["USU"] = universityStudentUnion
-        locations["VPAC"] = valleyPerformingArtsCenter
-    }
+    let NH : [String: CLLocationCoordinate2D] = [
+        "left" : CLLocationCoordinate2DMake(34.236737, -118.531904),
+        "right" : CLLocationCoordinate2DMake(34.236871, -118.531557)
+    ]
     
-    func findCenterPoint(locationDictionary : [String : [String: CLLocationCoordinate2D]]){
+    let UN : [String: CLLocationCoordinate2D] = [
+        "left" : CLLocationCoordinate2DMake(34.239306, -118.531904),
+        "right" : CLLocationCoordinate2DMake(34.239140, -118.531557)
+    ]
+    let EU : [String: CLLocationCoordinate2D] = [
+        "left" : CLLocationCoordinate2DMake(34.241102, -118.531904),
+        "right" : CLLocationCoordinate2DMake(34.240957,  -118.531557)
+    ]
+    
+    let JD : [String: CLLocationCoordinate2D] = [
+        "left" : CLLocationCoordinate2DMake(34.240992, -118.527476),
+        "right" : CLLocationCoordinate2DMake(34.241102, -118.527265)
+    ]
+    let CS : [String: CLLocationCoordinate2D] = [
+        "left" : CLLocationCoordinate2DMake(34.239097, -118.527448),
+        "right" : CLLocationCoordinate2DMake(34.239213, -118.527244)
+    ]
+    
+    let VPAC : [String: CLLocationCoordinate2D] = [
+        "left" : CLLocationCoordinate2DMake(34.236871, -118.527472),
+        "right" : CLLocationCoordinate2DMake(34.236737, -118.527240)
+    ]
+    
+    let redPath = [CLLocationCoordinate2DMake(34.236790, -118.531904),CLLocationCoordinate2DMake(34.239306, -118.531904),CLLocationCoordinate2DMake(34.241102, -118.531904),CLLocationCoordinate2DMake(34.241102, -118.527265),CLLocationCoordinate2DMake(34.239213, -118.527244),CLLocationCoordinate2DMake(34.236737, -118.527240),CLLocationCoordinate2DMake(34.236790, -118.531904)]
+    
+    let greenPath = [CLLocationCoordinate2DMake(34.236871, -118.531557),CLLocationCoordinate2DMake(34.239140, -118.531557),CLLocationCoordinate2DMake(34.240957,  -118.531557),CLLocationCoordinate2DMake(34.240992, -118.527476),CLLocationCoordinate2DMake(34.239097, -118.527448),CLLocationCoordinate2DMake(34.236871, -118.527472),CLLocationCoordinate2DMake(34.236871, -118.531557)]
+    
+    let B2 = CLLocationCoordinate2DMake(34.236969, -118.533812)
+    let B4 = CLLocationCoordinate2DMake(34.239235, -118.533810)
+    let B5 = CLLocationCoordinate2DMake(34.241989, -118.533583)
+    let E6 = CLLocationCoordinate2DMake(34.242751, -118.529231)
+    let F5 = CLLocationCoordinate2DMake(34.242736, -118.524686)
+    let G3 = CLLocationCoordinate2DMake(34.238994, -118.525280)
+    
+    
+    init() {
+        clockwise["NH"] = NH["left"]
+        clockwise["UN"] = UN["left"]
+        clockwise["EU"] = EU["left"]
+        clockwise["JD"] = JD["right"]
+        clockwise["CS"] = CS["right"]
+        clockwise["VPAC"] = VPAC["right"]
+        
+        counterClockwise["NH"] = NH["right"]
+        counterClockwise["UN"] = UN["right"]
+        counterClockwise["EU"] = EU["right"]
+        counterClockwise["JD"] = JD["left"]
+        counterClockwise["CS"] = CS["left"]
+        counterClockwise["VPAC"] = VPAC["left"]
     }
+
     
 }

@@ -19,21 +19,10 @@ class MapViewController: UIViewController , MKMapViewDelegate , CLLocationManage
     @IBOutlet weak var typeSelector: UISegmentedControl!
     @IBOutlet weak var promptLabel: UILabel!
     @IBOutlet weak var promptView: UIView!
-    @IBOutlet weak var resetButton: UIButton!
-    
     @IBOutlet weak var driverOnlineSwitch: UISwitch!
-    @IBOutlet weak var rideRequestView: UIView!
-    @IBOutlet weak var rideInfoLabel: UILabel!
+    @IBOutlet weak var legendView: UIView!
     
     var locationManager: CLLocationManager!
-    var start : CLLocationCoordinate2D!
-    var end : CLLocationCoordinate2D!
-    
-    var annotations : [MKAnnotation] = []
-    var path : MKRoute?
-    
-    let pickupLocation = PickupLocations()
-    let promptMessages = ["Doubletap a pickup location..", "Doubletap a dropoff location"]
     
     var databaseRef = FIRDatabase.database().reference()
     let currentUser = FIRAuth.auth()?.currentUser
@@ -41,40 +30,30 @@ class MapViewController: UIViewController , MKMapViewDelegate , CLLocationManage
     var driverMode = false
     var userRequestId : String?
     
+    let locations = PickupLocations()
+    let constants = Constants()
+    var queue : [String : UInt] = [:]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //mapView.showsUserLocation = true
         mapView.delegate = self
-
+        
+        legendView.layer.cornerRadius = 10
+        legendView.clipsToBounds = true
+        
         let csunLocation = CLLocation(latitude: 34.238476, longitude: -118.529330)
         
         if driverMode {
             //hide appropriate labels and functionality
             driverOnlineSwitch.isEnabled = true
             driverOnlineSwitch.setOn(true, animated: true)
-            promptLabel.text = "Waiting for requests..."
-            databaseRef.child("Requests").observe(.childAdded , with: { (snapshot) in
-                
-                DispatchQueue.main.async {
-                    print("request received")
-                    self.rideRequestView.isHidden = false
-                }
-                if let requestDetails = snapshot.value as? [String : AnyObject] {
-                    self.userRequestId = requestDetails["user"] as? String
-                    if let from = requestDetails["from"] as? String, let to = requestDetails["to"] as? String, let latitude = requestDetails["latitude"] as? String, let longitude = requestDetails["longitude"] as? String{
-                    self.promptLabel.text = "Request received!"
-                    self.rideInfoLabel.text = "Needs a ride from \(from) to \(to)"
-                    self.riderLocation = CLLocationCoordinate2D(latitude: Double(latitude)!, longitude: Double(longitude)!)
-                    }
-                }
-            })
         } else {
-            promptLabel.text = promptMessages[0]
+           
         }
         
-        mapView.mapType = MKMapType.satellite
-        mapView.isZoomEnabled = false
-        typeSelector.selectedSegmentIndex = 1
+        mapView.mapType = MKMapType.standard
+        typeSelector.selectedSegmentIndex = 0
         
         centerOnUser(location: csunLocation)
         
@@ -82,190 +61,199 @@ class MapViewController: UIViewController , MKMapViewDelegate , CLLocationManage
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         
-        //checks when trip is accepted
-        databaseRef.child("Enroute").observe(.childAdded , with: {
-            (snapshot) in
-            if let newRideDetails = snapshot.value as? [String : AnyObject] {
-                // someone accepted the ride request
-                if let rider = newRideDetails["rider"] as? String {
-                    if let currentUser = FIRAuth.auth()?.currentUser{
-                        if rider == currentUser.uid {
-                            let alert = self.basicDestructiveAlert(title: "Success!", message: "Your carty is on the way!", style: .alert)
-                            if self.driverMode == false {
-                                DispatchQueue.main.async {
-                                    self.promptLabel.text = "Your carty is arriving soon"
-                                    self.promptView.isHidden = false
-                                    self.present(alert, animated: true, completion: nil)
-                                    print("Start : \(self.start) End: \(self.end)")
-                                    if let from = self.start, let to = self.end {
-                                        self.getDirections(from: from , to: to)
-                                    }
-                                }
-                            }
-                            self.progressIndicator.stopAnimating()
-                            self.progressView.isHidden = true
-                        } else {
-                            print("Not my request, rider: \(rider) driver: \(currentUser.uid)")
-                        }
-                    }
-                }
-            }
+        for location in locations.clockwise {
+            let annotation = StopAnnotation(coordinate: location.value, name: location.key, direction: "counterClockwise", image: UIImage(named: "\(location.key)Red")!, numPeopleWaiting: 0)
+            mapView.addAnnotation(annotation)
+        }
+        
+        for location in locations.counterClockwise {
+            let annotation = StopAnnotation(coordinate: location.value, name: location.key, direction: "clockwise", image: UIImage(named: "\(location.key)Green")!, numPeopleWaiting: 0)
+            mapView.addAnnotation(annotation)
+        }
+        
+        
+        let clockwisePath = MKPolyline(coordinates: locations.redPath, count: locations.redPath.count)
+        let counterClockwisePath = MKPolyline(coordinates: locations.greenPath, count: locations.greenPath.count)
+        
+        mapView.addOverlays([clockwisePath,counterClockwisePath])
+        
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        setQueue()
+        getCurrentQueues()
+        setupDatabaseListeners()
+    }
+    
+//    nhClock: UInt,nhCounter: UInt, unClock: UInt, unCounter: UInt, euClock: UInt, euCounter: UInt, jdClock: UInt, jdCounter: UInt, csClock: UInt, csCounter: UInt,vpacClock: UInt,vpacCounter: UInt
+    func setQueue(){
+        
+        queue[constants.nhClock] = 0
+        queue[constants.nhCounter] = 0
+        queue[constants.unClock] = 0
+        queue[constants.unCounter] = 0
+        queue[constants.euClock] = 0
+        queue[constants.euCounter] = 0
+        queue[constants.jdClock] = 0
+        queue[constants.jdCounter] = 0
+        queue[constants.csClock] = 0
+        queue[constants.csCounter] = 0
+        queue[constants.vpacClock] = 0
+        queue[constants.vpacCounter] = 0
+    }
+    
+    func getCurrentQueues(){
+        
+        databaseRef.child(constants.queue).child(constants.nhClock).observeSingleEvent(of: .value, with: { (people) in
+            self.queue[self.constants.nhClock] = people.childrenCount
+        })
+        databaseRef.child(constants.queue).child(constants.nhCounter).observeSingleEvent(of: .value, with: { (people) in
+            self.queue[self.constants.nhCounter] = people.childrenCount
+        })
+        databaseRef.child(constants.queue).child(constants.unClock).observeSingleEvent(of: .value, with: { (people) in
+            self.queue[self.constants.unClock] = people.childrenCount
+        })
+        databaseRef.child(constants.queue).child(constants.unCounter).observeSingleEvent(of: .value, with: { (people) in
+            self.queue[self.constants.unCounter] = people.childrenCount
+        })
+        databaseRef.child(constants.queue).child(constants.euClock).observeSingleEvent(of: .value, with: { (people) in
+            self.queue[self.constants.euClock] = people.childrenCount
+        })
+        databaseRef.child(constants.queue).child(constants.euCounter).observeSingleEvent(of: .value, with: { (people) in
+            self.queue[self.constants.euCounter] = people.childrenCount
+        })
+        databaseRef.child(constants.queue).child(constants.jdClock).observeSingleEvent(of: .value, with: { (people) in
+            self.queue[self.constants.jdClock] = people.childrenCount
+        })
+        databaseRef.child(constants.queue).child(constants.jdCounter).observeSingleEvent(of: .value, with: { (people) in
+            self.queue[self.constants.jdCounter] = people.childrenCount
+        })
+        databaseRef.child(constants.queue).child(constants.csClock).observeSingleEvent(of: .value, with: { (people) in
+            self.queue[self.constants.csClock] = people.childrenCount
+        })
+        databaseRef.child(constants.queue).child(constants.csCounter).observeSingleEvent(of: .value, with: { (people) in
+            self.queue[self.constants.csCounter] = people.childrenCount
+        })
+        databaseRef.child(constants.queue).child(constants.vpacClock).observeSingleEvent(of: .value, with: { (people) in
+            self.queue[self.constants.vpacClock] = people.childrenCount
+        })
+        databaseRef.child(constants.queue).child(constants.vpacCounter).observeSingleEvent(of: .value, with: { (people) in
+            self.queue[self.constants.vpacCounter] = people.childrenCount
         })
     }
     
-    var riderLocation :CLLocationCoordinate2D?
-    
-    func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
-        <#code#>
-    }
-   
-    @IBAction func doubleTap(_ sender: UITapGestureRecognizer) {
-        sender.numberOfTapsRequired = 2
-        let touchPoint = sender.location(in: mapView)
-        let touchMapCoordinate = mapView.convert(touchPoint, toCoordinateFrom: mapView)
-        checkWhereTapped(tapped: touchMapCoordinate)
-
-    }
-    @IBAction func acceptRide(_ sender: UIButton) {
-        rideRequestView.isHidden = true
-        if let user = currentUser, let requestUserId = userRequestId {
-            let acceptRequest : [AnyHashable : Any] = [AnyHashable("driver") : user.uid, AnyHashable("rider") : requestUserId]
-            databaseRef.child("Enroute").child(requestUserId).updateChildValues(acceptRequest)
-            promptLabel.text = "Proceed to pickup location"
-            if let location = locationManager.location, let to = riderLocation {
-                self.getDirections(from: location.coordinate, to: to)
-            }
-        }
-
-    }
-    @IBAction func declineRide(_ sender: UIButton) {
-        rideRequestView.isHidden = true
+    func setupDatabaseListeners(){
+        databaseRef.child(constants.queue).observe(.childAdded, with: { (people) in
+            self.getCurrentQueues()
+        })
+        databaseRef.child(constants.queue).observe(.childRemoved, with: { (people) in
+            self.getCurrentQueues()
+        })
+        databaseRef.child(constants.queue).observe(.childChanged, with: { (people) in
+            self.getCurrentQueues()
+        })
     }
     
-    func checkWhereTapped(tapped: CLLocationCoordinate2D) {
-        if driverMode == false {
-            var buildingTitle = ""
-            
-            //iterates through building coordinates and checks whether its within bounds
-            for (key, value) in  pickupLocation.locations {
-                if let topLeft = value["topLeft"] , let topRight = value["topRight"], let bottomRight = value["bottomRight"], let bottomLeft = value["bottomLeft"] {
-                    if (tapped.latitude <= topLeft.latitude && tapped.latitude >= bottomRight.latitude && tapped.longitude <= topRight.longitude && tapped.longitude >= bottomLeft.longitude) {
-                        
-                        buildingTitle = key
-                        break
-                    }
-                }
-            }
-            
-            if buildingTitle != "" {
-            let pointAnnotation = MKPointAnnotation()
-            pointAnnotation.coordinate = tapped
-            pointAnnotation.title = buildingTitle
-            
-            annotations.append(pointAnnotation)
-            mapView.addAnnotation(pointAnnotation)
-                
-            if start == nil {
-                start = tapped
-                promptLabel.text = promptMessages[1]
-            } else {
-                end = tapped
-                promptView.isHidden = true
-                if let from = annotations[0].title{
-                    let message = "From: \(from!)\nTo: \(buildingTitle)"
-                    let alert = UIAlertController(title: "Make request?", message: message, preferredStyle: .alert)
-                    let cancel = UIAlertAction(title: "Cancel", style: .cancel , handler: {
-                        (action) in
-                        
-                    })
-                    let confirm = UIAlertAction(title: "Confirm", style: .default, handler: {
-                        (action) in
-                        self.addTripRequest(from: from! ,to: buildingTitle)
-                    })
-                    alert.addAction(cancel)
-                    alert.addAction(confirm)
-                    present(alert, animated: true, completion: nil)
-                }
-                //getDirections(from: start, to: end)
-                resetButton.isHidden = false
-            }
-                
-            }
-        }
-    }
+    var queueKey = ""
     
-    @IBAction func resetRoute(_ sender: Any) {
-        mapView.removeAnnotations(annotations)
-        //mapView.remove((path?.polyline)!)
-        start = nil
-        end = nil
-        promptLabel.text = promptMessages[0]
-        promptView.isHidden = false
-        
-        resetButton.isHidden = true
-    }
-    
-    @IBOutlet weak var progressView: UIView!
-    @IBOutlet weak var progressIndicator: UIActivityIndicatorView!
-    
-    
-    func addTripRequest(from : String, to : String){
+    func addTripRequest(name : String){
         
         if let user = currentUser{
-            progressView.isHidden = false
-            progressIndicator.startAnimating()
-            
-            var requestDetails : [AnyHashable : Any] = [AnyHashable("from")  : from, AnyHashable("to") : to, AnyHashable("user") : user.uid]
-            if let location = locationManager.location{
-                requestDetails["latitude"] = String(location.coordinate.latitude)
-                requestDetails["longitude"] = String(location.coordinate.longitude)
-            }
-            // add to requests
-            databaseRef.child("Requests").child(user.uid).updateChildValues(requestDetails, withCompletionBlock: { (error, reference) in
-                if (error == nil) {
-                } else {
-                    if let errorDescription = error?.localizedDescription{
-                        print(errorDescription)
-                    }
-                }
-            })
-
+            let key = databaseRef.child(name).childByAutoId().key
+            //queuekey = "\(key)"
+            databaseRef.child(constants.queue).child(name).child(key).setValue(user.uid)
         } else {
             let alert = basicDestructiveAlert(title: "No user logged in", message: "please login", style: .alert)
             self.present( alert, animated: true, completion: nil)
         }
     }
     
-    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-        let path = MKPolylineRenderer(overlay: overlay)
-        path.strokeColor = UIColor.red
-        path.lineWidth = 2.0
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        if (annotation is MKUserLocation) { return nil }
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "CustomAnnotation") as MKAnnotationView!
         
-        return path
-    }
-    
-    func getDirections(from : CLLocationCoordinate2D, to : CLLocationCoordinate2D){
-        let directions = MKDirectionsRequest()
-        let start = MKPlacemark(coordinate: from)
-        let end = MKPlacemark(coordinate: to)
-        directions.source = MKMapItem(placemark: start)
-        directions.destination = MKMapItem(placemark: end)
-        directions.transportType = MKDirectionsTransportType.walking
-        
-        let route = MKDirections(request: directions)
-        route.calculate(completionHandler: {
-            (response, error) in
+        if let stopAnnotation = annotation as? StopAnnotation{
             
-            if let route = response?.routes{
-                self.path = route.first
-            
-                self.mapView.add((self.path?.polyline)!, level: MKOverlayLevel.aboveRoads)
-                self.mapView.setNeedsDisplay()
+            if (annotationView == nil) {
+                annotationView = MKAnnotationView(annotation: stopAnnotation, reuseIdentifier: "Custom Annotation")
+                annotationView?.canShowCallout = false
             } else {
-                print("no routes")
+                annotationView?.annotation = stopAnnotation;
             }
             
-        })
+            annotationView?.image = stopAnnotation.image
+        }
+        return annotationView
+    }
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        if let stopAnnotation = view.annotation as? StopAnnotation{
+
+            let views = Bundle.main.loadNibNamed("Stop", owner: nil, options: nil)
+            let calloutView = views?[0] as! Stop
+            calloutView.stopName.text = stopAnnotation.name
+            calloutView.direction.image = UIImage(named: stopAnnotation.direction)!
+            calloutView.ridersWaiting.text = "\(queue["\(stopAnnotation.name)-\(stopAnnotation.direction)"]!)"
+            calloutView.layer.cornerRadius = 10
+            calloutView.clipsToBounds = true
+            calloutView.center = CGPoint(x: view.bounds.size.width / 2, y: -calloutView.bounds.size.height*0.22)
+            view.addSubview(calloutView)
+            mapView.setCenter((view.annotation?.coordinate)!, animated: true)
+        }
+
+    }
+    var touchLocation : CGPoint = CGPoint()
+
+    @IBAction func mapTapped(_ sender: UITapGestureRecognizer) {
+        sender.numberOfTapsRequired = 1
+        touchLocation = sender.location(in: self.view)
+        self.dismissKeyboard()
+    }
+    
+    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+        if view.isKind(of: MKAnnotationView.self)
+        {
+            for subview in view.subviews
+            {
+                if let calloutView = subview as? Stop{
+                    let annotationLocation = mapView.convert(view.annotation!.coordinate, toPointTo: self.view)
+                    
+                    // create a rect which is equal to size of BusinessCalloutView
+                    let touchRectOrigin = CGPoint(x: annotationLocation.x - calloutView.bounds.width/2 , y: annotationLocation.y - (calloutView.bounds.height*1.5))
+                    let touchRect = CGRect(origin: touchRectOrigin, size: calloutView.bounds.size)
+                    
+                    if touchRect.contains(touchLocation) {
+                        if let annotation = view.annotation as? StopAnnotation{
+                            if annotation.direction == "clockwise"{
+                                addTripRequest(name: "\(annotation.name)-clockwise")
+                            } else {
+                                addTripRequest(name: "\(annotation.name)-counterClockwise")
+                            }
+                        }
+                    }
+                }
+                
+                subview.removeFromSuperview()
+            }
+        }
+    }
+    
+    var count = 0
+    
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        let path = MKPolylineRenderer(overlay: overlay)
+        
+        if count == 0 {
+            path.strokeColor = UIColor.red
+            count += 1
+        } else {
+            path.strokeColor = UIColor.green
+        }
+        
+        path.lineWidth = 2.5
+        
+        return path
     }
 
     @IBAction func zoomToCurrentLocation(_ sender: UIBarButtonItem) {

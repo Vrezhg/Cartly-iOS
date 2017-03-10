@@ -16,6 +16,10 @@
 		DB310BBA1DAC9F6000A97BC5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB310BB81DAC9F6000A97BC5 /* LaunchScreen.storyboard */; };
 		DB310BC31DACB35E00A97BC5 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB310BC21DACB35D00A97BC5 /* MapKit.framework */; };
 		DB310BC51DACD23C00A97BC5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB310BC41DACD23C00A97BC5 /* ViewController.swift */; };
+		DB550D421E67EA41005B51DF /* StopAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB550D411E67EA41005B51DF /* StopAnnotation.swift */; };
+		DB550D451E67EBAA005B51DF /* Stop.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB550D441E67EBAA005B51DF /* Stop.xib */; };
+		DB550D471E67EBC4005B51DF /* Stop.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB550D461E67EBC4005B51DF /* Stop.swift */; };
+		DB550D491E6889AB005B51DF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB550D481E6889AB005B51DF /* Constants.swift */; };
 		DBC84B8D1DD156FA0099492B /* PickupLocations.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC84B8C1DD156FA0099492B /* PickupLocations.swift */; };
 		DBEE9F191DF3ECCE004248D9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBEE9F181DF3ECCE004248D9 /* LoginViewController.swift */; };
 		DBEE9F1D1DF3FA42004248D9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DBEE9F1C1DF3FA42004248D9 /* GoogleService-Info.plist */; };
@@ -35,6 +39,10 @@
 		DB310BBB1DAC9F6000A97BC5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DB310BC21DACB35D00A97BC5 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		DB310BC41DACD23C00A97BC5 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		DB550D411E67EA41005B51DF /* StopAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopAnnotation.swift; sourceTree = "<group>"; };
+		DB550D441E67EBAA005B51DF /* Stop.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Stop.xib; sourceTree = "<group>"; };
+		DB550D461E67EBC4005B51DF /* Stop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stop.swift; sourceTree = "<group>"; };
+		DB550D481E6889AB005B51DF /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		DBC84B8C1DD156FA0099492B /* PickupLocations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickupLocations.swift; sourceTree = "<group>"; };
 		DBEE9F181DF3ECCE004248D9 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		DBEE9F1C1DF3FA42004248D9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -66,6 +74,8 @@
 			isa = PBXGroup;
 			children = (
 				DBC84B8C1DD156FA0099492B /* PickupLocations.swift */,
+				DB550D411E67EA41005B51DF /* StopAnnotation.swift */,
+				DB550D481E6889AB005B51DF /* Constants.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -102,6 +112,7 @@
 		DB310BAB1DAC9F6000A97BC5 /* Cartly */ = {
 			isa = PBXGroup;
 			children = (
+				DB550D431E67EB85005B51DF /* Views */,
 				DB1A4C311DB2D86000BE71E3 /* Controllers */,
 				DB1A4C301DB2D85200BE71E3 /* Models */,
 				DB310BB01DAC9F6000A97BC5 /* Main.storyboard */,
@@ -121,6 +132,15 @@
 				334DA6E9180F75D217550972 /* Pods_Cartly.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DB550D431E67EB85005B51DF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DB550D441E67EBAA005B51DF /* Stop.xib */,
+				DB550D461E67EBC4005B51DF /* Stop.swift */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -187,6 +207,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB310BBA1DAC9F6000A97BC5 /* LaunchScreen.storyboard in Resources */,
+				DB550D451E67EBAA005B51DF /* Stop.xib in Resources */,
 				DBEE9F1D1DF3FA42004248D9 /* GoogleService-Info.plist in Resources */,
 				DB310BB71DAC9F6000A97BC5 /* Assets.xcassets in Resources */,
 				DB310BB21DAC9F6000A97BC5 /* Main.storyboard in Resources */,
@@ -249,11 +270,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				DBEE9F191DF3ECCE004248D9 /* LoginViewController.swift in Sources */,
+				DB550D421E67EA41005B51DF /* StopAnnotation.swift in Sources */,
 				DBC84B8D1DD156FA0099492B /* PickupLocations.swift in Sources */,
+				DB550D471E67EBC4005B51DF /* Stop.swift in Sources */,
 				DB310BAF1DAC9F6000A97BC5 /* MapViewController.swift in Sources */,
 				DB310BAD1DAC9F6000A97BC5 /* AppDelegate.swift in Sources */,
 				DB310BC51DACD23C00A97BC5 /* ViewController.swift in Sources */,
 				DB310BB51DAC9F6000A97BC5 /* Cartly.xcdatamodeld in Sources */,
+				DB550D491E6889AB005B51DF /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
